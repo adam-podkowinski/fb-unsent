@@ -47,7 +47,8 @@ class Client(fbchat.Client):
                     elif isinstance(a, FileAttachment):
                         r = requests.get(a.url)
                         if r.status_code == 200:
-                            url = re.search("document\.location\.replace\(\"(.*)\"\);", r.text).group(1)
+                            url = re.search(
+                                "document\.location\.replace\(\"(.*)\"\);", r.text).group(1)
                             url = url.replace('\\/', '/')
                             files.append(url)
 
@@ -58,7 +59,8 @@ class Client(fbchat.Client):
                 if message.text or message.sticker:
                     self.send(message)
                 if unsendable_files:
-                    self.sendMessage("Attachments: \n{}".format("\n----------\n".join(unsendable_files)))
+                    self.sendMessage("Attachments: \n{}".format(
+                        "\n----------\n".join(unsendable_files)))
                 if files:
                     self.sendRemoteFiles(files)
                 self.messages = list(filter(lambda x: x is not message, self.messages))

@@ -16,6 +16,7 @@ FB_EMAIL = os.getenv("FB_EMAIL")
 FB_PASSWORD = os.getenv("FB_PASSWORD")
 FB_USE_SESSION = is_true(os.getenv("FB_USE_SESSION"))
 FB_SESSION_FILE = os.getenv("FB_SESSION_FILE")
+FB_SESSION = None
 
 if FB_USE_SESSION:
     with open(FB_SESSION_FILE) as f:
